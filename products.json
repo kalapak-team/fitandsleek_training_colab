@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "name": "អាវក្នុងបុរស Fitandsleek",
+    "category": "អាវក្នុង",
+    "price": 12.0,
+    "currency": "USD",
+    "sizes": ["M", "L", "XL", "XXL"],
+    "in_stock": true,
+    "stock_quantity": 25,
+    "description": "អាវក្នុងបុរស នាំចូលជាគីបពីបរទេស លក់រាយ"
+  },
+  {
+    "id": 2,
+    "name": "អាវក្រៅបុរស Casual Jacket",
+    "category": "អាវក្រៅ",
+    "price": 35.0,
+    "currency": "USD",
+    "sizes": ["M", "L", "XL"],
+    "in_stock": true,
+    "stock_quantity": 12,
+    "description": "អាវក្រៅបុរស សម្រាប់ប្រើប្រចាំថ្ងៃ"
+  },
+  {
+    "id": 3,
+    "name": "ស្បែកជើងប៉ាតាបុរស",
+    "category": "ស្បែកជើងប៉ាតា",
+    "price": 28.0,
+    "currency": "USD",
+    "sizes": ["40", "41", "42", "43", "44"],
+    "in_stock": true,
+    "stock_quantity": 18,
+    "description": "ស្បែកជើងប៉ាតាបុរស នាំចូលពីបរទេស"
+  },
+  {
+    "id": 4,
+    "name": "ស្បែកជើងប៊ូបុរស",
+    "category": "ស្បែកជើងប៊ូ",
+    "price": 45.0,
+    "currency": "USD",
+    "sizes": ["40", "41", "42", "43"],
+    "in_stock": true,
+    "stock_quantity": 8,
+    "description": "ស្បែកជើងប៊ូបុរស រឹងមាំ សម្រាប់ប្រើប្រចាំថ្ងៃ"
+  },
+  {
+    "id": 5,
+    "name": "ស្រោមជើងបុរស",
+    "category": "ស្រោមជើង",
+    "price": 10.0,
+    "currency": "USD",
+    "sizes": ["Free Size"],
+    "in_stock": true,
+    "stock_quantity": 40,
+    "description": "ស្រោមជើងបុរស តម្លៃចាប់ពី 10 ដុល្លារ"
+  },
+  {
+    "id": 6,
+    "name": "កាបូបបុរស",
+    "category": "កាបូប",
+    "price": 22.0,
+    "currency": "USD",
+    "sizes": ["One Size"],
+    "in_stock": true,
+    "stock_quantity": 15,
+    "description": "កាបូបបុរស នាំចូលជាគីប"
+  },
+  {
+    "id": 7,
+    "name": "មួកបុរស",
+    "category": "មួក",
+    "price": 10.0,
+    "currency": "USD",
+    "sizes": ["Free Size"],
+    "in_stock": true,
+    "stock_quantity": 20,
+    "description": "មួកបុរស សម្រាប់ប្រើប្រចាំថ្ងៃ"
+  },
+  {
+    "id": 8,
+    "name": "ខ្សែក្រវាត់បុរស",
+    "category": "ខ្សែក្រវាត់",
+    "price": 15.0,
+    "currency": "USD",
+    "sizes": ["M", "L", "XL"],
+    "in_stock": true,
+    "stock_quantity": 14,
+    "description": "ខ្សែក្រវាត់បុរស លក់រាយ"
+  },
+  {
+    "id": 9,
+    "name": "នាឡិកាបុរស",
+    "category": "នាឡិកា",
+    "price": 30.0,
+    "currency": "USD",
+    "sizes": ["One Size"],
+    "in_stock": true,
+    "stock_quantity": 10,
+    "description": "នាឡិកាបុរស នាំចូលពីបរទេស"
+  }
+]

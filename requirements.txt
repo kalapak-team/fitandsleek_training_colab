@@ -1,0 +1,6 @@
+transformers
+torch
+accelerate
+gradio
+psycopg2-binary
+python-dotenv

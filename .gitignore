@@ -1,0 +1,23 @@
+# Root
+.env
+**/.env
+**/.env.local
+venv/
+.venv/
+node_modules/
+.next/
+out/
+dist/
+build/
+__pycache__/
+*.pyc
+.gradio/
+.cache/
+*.bin
+*.safetensors
+.DS_Store
+.idea/
+.vscode/
+models/*
+!models/.gitkeep
+!models/.gitignore

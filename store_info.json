@@ -1,0 +1,140 @@
+{
+  "store_name": "Fitandsleek",
+  "assistant_name": "Fitandsleek AI Assistant",
+  "owner_model": "ម្ចាស់លក់ផ្ទាល់ គ្មានបុគ្គលិក",
+  "target_customers": "មានអីវ៉ាន់លក់តែសម្រាប់បុរស",
+  "product_categories": [
+    "អាវក្នុង",
+    "អាវក្រៅ",
+    "ស្បែកជើងប៉ាតា",
+    "ស្បែកជើងប៊ូ",
+    "ស្រោមជើង",
+    "កាបូបប្រុសស្រី",
+    "មួក",
+    "ខ្សែក្រវាត់",
+    "នាឡិកា"
+  ],
+  "product_source": "ភាគច្រើនលក់អីវ៉ាន់មួយទឹកនាំចូលពីបរទេស ជាលក្ខណៈគីប",
+  "price_range": "ជាទូទៅតម្លៃចាប់ពី 10 ដុល្លារឡើងទៅ",
+  "sales_type": "លក់តែរាយ មិនលក់បោះដុំ",
+  "payment_methods": [
+    "KHQR (ABA, Acleda និងធនាគារផ្សេងៗ)",
+    "VISA Card"
+  ],
+  "delivery_services": [
+    "Grab",
+    "Foodpanda",
+    "Vireak Buntham Express"
+  ],
+  "online_payment_policy": "ទិញតាម App/Website តម្រូវឱ្យបង់លុយមុន",
+  "damage_policy": "បើអីវ៉ាន់ខូចខាត ឬបែកបាក់ពេលទៅដល់ដៃអតិថិជន ហាងសងអីវ៉ាន់ថ្មីវិញ",
+  "opening_hours": "បើកលក់រាល់ថ្ងៃ (សូមទាក់ទងម្ចាស់ហាងដើម្បីបញ្ជាក់ម៉ោងច្បាស់)",
+  "location": "សូមទាក់ទងម្ចាស់ហាង Fitandsleek ដើម្បីសួរទីតាំង / អាសយដ្ឋាន",
+  "contact": "សូមទាក់ទងម្ចាស់ហាងដោយផ្ទាល់តាមបណ្តាញសង្គមរបស់ Fitandsleek",
+  "return_policy": "បើអីវ៉ាន់ខូចខាតពេលទៅដល់ ហាងសងអីវ៉ាន់ថ្មី។ សម្រាប់ការប្តូរ/ត្រឡប់ផ្សេងទៀត សូមពិភាក្សាជាមួយម្ចាស់ហាង។",
+  "language_note": "អាចសួរជាភាសាខ្មែរ ឬអង់គ្លេសបាន។ ខ្ញុំនឹងឆ្លើយជាភាសាខ្មែរ។",
+  "faq": [
+    {
+      "id": "identity",
+      "keywords": [
+        "អ្នកជាអ្នកណា",
+        "អ្នកជាអ្វី",
+        "who are you",
+        "what are you",
+        "what is your name",
+        "what's your name",
+        "your name",
+        "ឈ្មោះអ្នក",
+        "ឈ្មោះរបស់អ្នក",
+        "អ្នកឈ្មោះអ្វី",
+        "អ្នកធ្វើអ្វី",
+        "ជួយអ្វីបាន",
+        "introduce yourself",
+        "ai assistant",
+        "ជា ai"
+      ],
+      "answer": "ខ្ញុំជា {assistant_name} របស់ហាង {store_name}។ ខ្ញុំអាចជួយអំពីទំនិញ តម្លៃ ស្តុក ការទូទាត់ និងដឹកជញ្ជូន។ ខ្ញុំមិនមានឈ្មោះផ្សេងទេ។"
+    },
+    {
+      "id": "store_name",
+      "keywords": ["ឈ្មោះហាង", "មានឈ្មោះអ្វី", "store name", "ហាងនេះមានឈ្មោះ"],
+      "answer": "ឈ្មោះហាងគឺ {store_name}។"
+    },
+    {
+      "id": "categories",
+      "keywords": ["លក់អ្វីខ្លះ", "ប្រភេទអីវ៉ាន់", "categories", "មានលក់អ្វី", "លក់អ្វី", "what do you sell"],
+      "answer": "{store_name} លក់សម្រាប់បុរស រួមមាន៖ {categories}។"
+    },
+    {
+      "id": "target",
+      "keywords": ["សម្រាប់បុរស", "ភេទណា", "for men", "សម្រាប់ស្រី", "women"],
+      "answer": "{target_customers}"
+    },
+    {
+      "id": "payment",
+      "keywords": ["បង់លុយ", "ទូទាត់", "payment", "khqr", "visa", "aba", "បង់ប្រាក់", "how to pay"],
+      "answer": "អាចបង់តាម៖ {payments}។ {online_payment_policy}។"
+    },
+    {
+      "id": "delivery",
+      "keywords": ["ដឹកជញ្ជូន", "delivery", "grab", "foodpanda", "vireak", "shipping", "ដឹក"],
+      "answer": "មានសេវាដឹកជញ្ជូន៖ {delivery}។"
+    },
+    {
+      "id": "price_range",
+      "keywords": ["តម្លៃចាប់", "price range", "ថ្លៃចាប់", "ថ្លៃប៉ុន្មានជាទូទៅ"],
+      "answer": "{price_range}"
+    },
+    {
+      "id": "sales_type",
+      "keywords": ["លក់រាយ", "បោះដុំ", "wholesale", "retail"],
+      "answer": "{sales_type}"
+    },
+    {
+      "id": "damage",
+      "keywords": ["ខូចខាត", "បែកបាក់", "សងអីវ៉ាន់", "damage", "replacement", "ត្រឡប់", "return", "ប្តូរ"],
+      "answer": "{damage_policy} {return_policy}"
+    },
+    {
+      "id": "owner",
+      "keywords": ["ម្ចាស់ហាង", "បុគ្គលិក", "owner", "staff"],
+      "answer": "{owner_model}"
+    },
+    {
+      "id": "source",
+      "keywords": ["គីប", "នាំចូលពីបរទេស", "product source", "imported"],
+      "answer": "{product_source}"
+    },
+    {
+      "id": "hours",
+      "keywords": ["ម៉ោងបើក", "បើកម៉ោង", "opening hours", "open hours", "បើកលក់"],
+      "answer": "{opening_hours}"
+    },
+    {
+      "id": "location",
+      "keywords": ["ទីតាំង", "អាសយដ្ឋាន", "នៅណា", "location", "address", "where"],
+      "answer": "{location}"
+    },
+    {
+      "id": "contact",
+      "keywords": ["ទំនាក់ទំនង", "លេខទូរស័ព្ទ", "contact", "phone", "ផេសបុក", "telegram"],
+      "answer": "{contact}"
+    },
+    {
+      "id": "language",
+      "keywords": ["និយាយខ្មែរ", "speak khmer", "ភាសាខ្មែរ", "english"],
+      "answer": "{language_note}"
+    }
+  ],
+  "unanswered_topics": [
+    "ការរក្សា Cost និង Price សម្រាប់គណនាប្រាក់ចំណេញ",
+    "ថ្ងៃចាប់ផ្តើម/បញ្ចប់នៃការចុះថ្លៃ",
+    "ការចុះថ្លៃលើគ្រប់មុខទំនិញ ឬតែខ្លះ",
+    "អ្នកណាអាចប្រើប្រព័ន្ធ",
+    "Role-based access",
+    "កម្រិត Alert ពេលស្តុកជិតអស់",
+    "ប្រព័ន្ធសន្សំពិន្ទុ",
+    "គោលការណ៍សម្រាប់ទំនិញស្តុកច្រើន",
+    "ដៃគូសហការ ឬអ្នកផ្គត់ផ្គង់សម្រាប់ការកម្មង់"
+  ]
+}
