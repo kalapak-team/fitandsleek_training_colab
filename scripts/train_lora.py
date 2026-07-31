@@ -49,16 +49,17 @@ def main() -> None:
     if not DATA_FILE.exists():
         raise SystemExit(f"Missing {DATA_FILE}. Run: python scripts/prepare_train_data.py")
 
-    # T4 often breaks when fp16 GradScaler meets bf16 grads.
-    # Use bf16 only on GPUs that truly support it; otherwise plain fp16 path.
-    use_bf16 = bool(torch.cuda.is_bf16_supported())
-    compute_dtype = torch.bfloat16 if use_bf16 else torch.float16
-    print(f"GPU: {torch.cuda.get_device_name(0)} | bf16={use_bf16} | dtype={compute_dtype}")
+    gpu_name = torch.cuda.get_device_name(0)
+    # Colab T4 reports bf16 support in some torch builds but AMP bf16 ops fail.
+    # Force a stable path: float16 compute + no GradScaler AMP.
+    compute_dtype = torch.float16
+    print(f"TRAIN_FIX_V2 | GPU={gpu_name} | compute_dtype=float16 | amp=off")
 
     rows = load_rows()
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
+    tokenizer.padding_side = "right"
 
     def to_text(example):
         text = tokenizer.apply_chat_template(
@@ -87,30 +88,32 @@ def main() -> None:
     model.config.use_cache = False
 
     peft_config = LoraConfig(
-        r=16,
-        lora_alpha=32,
+        r=8,
+        lora_alpha=16,
         lora_dropout=0.05,
         bias="none",
         task_type="CAUSAL_LM",
-        target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
+        target_modules=["q_proj", "v_proj"],
     )
 
     args = SFTConfig(
         output_dir=str(OUT_DIR),
-        num_train_epochs=3,
-        per_device_train_batch_size=2,
-        gradient_accumulation_steps=4,
+        num_train_epochs=2,
+        per_device_train_batch_size=1,
+        gradient_accumulation_steps=8,
         learning_rate=2e-4,
-        logging_steps=10,
+        logging_steps=5,
         save_strategy="epoch",
-        # Avoid fp16 GradScaler + bf16 parameter mismatch on Colab T4
         fp16=False,
-        bf16=use_bf16,
-        optim="adamw_torch",
-        max_grad_norm=1.0,
+        bf16=False,
+        optim="paged_adamw_8bit",
+        max_grad_norm=0.3,
+        warmup_ratio=0.03,
+        lr_scheduler_type="cosine",
         report_to=[],
         max_length=512,
         gradient_checkpointing=True,
+        dataset_text_field="text",
     )
 
     trainer = SFTTrainer(
@@ -121,9 +124,15 @@ def main() -> None:
         processing_class=tokenizer,
     )
     trainer.train()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     trainer.model.save_pretrained(OUT_DIR)
     tokenizer.save_pretrained(OUT_DIR)
+
+    marker = OUT_DIR / "adapter_config.json"
+    if not marker.exists():
+        raise SystemExit(f"Training finished but adapter missing: {marker}")
     print(f"Saved LoRA adapter -> {OUT_DIR}")
+    print("OK: adapter_config.json found")
 
 
 if __name__ == "__main__":
