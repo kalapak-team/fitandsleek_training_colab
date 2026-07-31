@@ -19,7 +19,7 @@ from pathlib import Path
 
 import torch
 from datasets import Dataset
-from peft import LoraConfig
+from peft import LoraConfig, prepare_model_for_kbit_training
 from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from trl import SFTConfig, SFTTrainer
 
@@ -49,6 +49,12 @@ def main() -> None:
     if not DATA_FILE.exists():
         raise SystemExit(f"Missing {DATA_FILE}. Run: python scripts/prepare_train_data.py")
 
+    # T4 often breaks when fp16 GradScaler meets bf16 grads.
+    # Use bf16 only on GPUs that truly support it; otherwise plain fp16 path.
+    use_bf16 = bool(torch.cuda.is_bf16_supported())
+    compute_dtype = torch.bfloat16 if use_bf16 else torch.float16
+    print(f"GPU: {torch.cuda.get_device_name(0)} | bf16={use_bf16} | dtype={compute_dtype}")
+
     rows = load_rows()
     tokenizer = AutoTokenizer.from_pretrained(BASE_MODEL, trust_remote_code=True)
     if tokenizer.pad_token is None:
@@ -67,14 +73,18 @@ def main() -> None:
     bnb = BitsAndBytesConfig(
         load_in_4bit=True,
         bnb_4bit_quant_type="nf4",
-        bnb_4bit_compute_dtype=torch.float16,
+        bnb_4bit_use_double_quant=True,
+        bnb_4bit_compute_dtype=compute_dtype,
     )
     model = AutoModelForCausalLM.from_pretrained(
         BASE_MODEL,
         quantization_config=bnb,
         device_map="auto",
         trust_remote_code=True,
+        torch_dtype=compute_dtype,
     )
+    model = prepare_model_for_kbit_training(model)
+    model.config.use_cache = False
 
     peft_config = LoraConfig(
         r=16,
@@ -93,9 +103,14 @@ def main() -> None:
         learning_rate=2e-4,
         logging_steps=10,
         save_strategy="epoch",
-        fp16=True,
+        # Avoid fp16 GradScaler + bf16 parameter mismatch on Colab T4
+        fp16=False,
+        bf16=use_bf16,
+        optim="adamw_torch",
+        max_grad_norm=1.0,
         report_to=[],
         max_length=512,
+        gradient_checkpointing=True,
     )
 
     trainer = SFTTrainer(
